@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="card-body">
+   <div>
+        <h3>Location: {{house.area}}</h3>
+       <img src="{{house.image.url}}" width="300" height="300">
+    <h4>Rentage: {{house.price}} / year</h4>
+    <h3>Type: {{house.house_type}}</h3>
+    <h4>Description: {{house.description}}</h4>
+    <h3>Bedrooms: {{house.nos_of_bedrooms}}</h3>
+    <h4>Bathrooms: {{house.nos_of_bathrooms}}</h4>
+   </div>
+    <hr>
+    <div>
+        <h3>Contact Agent</h3>
+        <h4>{{house.user.username|title}}</h4>
+        <img src="{{house.user.avatar.url}}" width="100" height="100">
+        <h5>{{house.user.phone}}</h5>
+        <h5>{{house.user.email}}</h5>
+        <p>{{house.user.bio}}</p>
+
+
+        {% if request.user == house.user %}
+        <!--<a href="{% url 'houseupdate' house.id %}">Edit House</a>
+        <a href="{% url 'housedelete' house.id %}">Delete House</a>-->
+        {% endif %}
+
+        {% if request.user.is_authenticated %}
+        <!--Remove this link add it to User profile-->
+        <a href="{% url 'housecreate' %}">Create House</a>
+        <a href="{% url 'useraccount' user.id %}">Manage Account</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

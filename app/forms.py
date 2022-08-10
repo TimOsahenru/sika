@@ -13,6 +13,7 @@ class HouseForm(ModelForm):
     class Meta:
         model = House
         fields = '__all__'
+        exclude = ['rented', 'agent']
 
 
 class UserProfileForm(ModelForm):

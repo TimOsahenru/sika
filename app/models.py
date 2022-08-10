@@ -35,10 +35,11 @@ class HouseType(models.Model):
         return self.name
 
 
+# Change user to agent
 class House(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    area = models.ForeignKey(Area, on_delete=models.SET_NULL, null=True)
-    house_type = models.ForeignKey(HouseType, on_delete=models.SET_NULL, null=True)
+    agent = models.ForeignKey(User, on_delete=models.CASCADE)
+    area = models.ForeignKey(Area, on_delete=models.SET_NULL, null=True, blank=True)
+    house_type = models.ForeignKey(HouseType, on_delete=models.SET_NULL, null=True, blank=True)
     price = models.IntegerField(blank=True, null=True)
     image = models.ImageField(null=True, default='property-2.jpg')
     description = models.TextField(null=True, blank=True)
@@ -48,7 +49,7 @@ class House(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.user.username
+        return self.agent.name
 
     class Meta:
         ordering = ['-created_at']

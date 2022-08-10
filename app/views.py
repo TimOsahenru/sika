@@ -105,18 +105,26 @@ def house_detail(request, pk):
 
 # ----------------End of house_detail---------------------
 
+
 @login_required(login_url='login')
 def house_create(request):
+
+    areas = Area.objects.all()
+    house_types = HouseType.objects.all()
 
     form = HouseForm()
 
     if request.method == 'POST':
         form = HouseForm(request.POST)
         if form.is_valid():
-            form.save()
+            house = form.save(commit=False)
+            house.agent = request.user
+            house.save()
             return redirect('houses')
 
-    context = {'form': form}
+    context = {'form': form,
+               'areas': areas,
+               'house_types': house_types}
     return render(request, 'create.html', context)
 
 # ----------------End of house_create---------------------
