@@ -6,6 +6,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
+from .filters import HouseFilter
 # Create your views here.
 
 
@@ -86,11 +88,21 @@ def logout_user(request):
 
 
 def house_list(request):
+    # keyword_search = request.GET.get('keyword_search') if request.GET.get('keyword_search') != None else ''
+    # houses = House.objects.filter(Q(area__name__icontains=keyword_search) | Q(house_type__name__icontains=keyword_search) | Q(price__icontains=keyword_search))
 
-    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    houses = House.objects.all()
 
-    houses = House.objects.filter(Q(area__name__icontains=q) | Q(house_type__name__icontains=q) | Q(price__icontains=q))
-    context = {'houses': houses}
+    my_filter = HouseFilter(request.GET, queryset=houses)
+    houses = my_filter.qs
+
+    page = Paginator(houses, 6)
+    page_list = request.GET.get('page')
+    page = page.get_page(page_list)
+
+    context = {'houses': houses,
+               'page': page,
+               'my_filter': my_filter}
     return render(request, 'index.html', context)
 
 # ----------------End of house_list---------------------

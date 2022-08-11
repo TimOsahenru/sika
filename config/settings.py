@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     #Custom Apps
     'app',
+    'django_filters',
 ]
 
 AUTH_USER_MODEL = 'app.User'

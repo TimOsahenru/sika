@@ -6,17 +6,19 @@
     </div>
     <span class="close-box-collapse right-boxed ion-ios-close"></span>
     <div class="box-collapse-wrap form">
-      <form class="form-a">
+      <form method="GET">
         <div class="row">
-          <div class="col-md-12 mb-2">
+          <!--<div class="col-md-12 mb-2">
             <div class="form-group">
               <label for="Type">Keyword</label>
-              <input type="text" class="form-control form-control-lg form-control-a" placeholder="Keyword">
+              <input name="keyword_search" type="text" class="form-control form-control-lg form-control-a" placeholder="Keyword">
             </div>
-          </div>
-          <div class="col-md-6 mb-2">
+          </div>-->
+
+          <!--<div class="col-md-6 mb-2">
             <div class="form-group">
-              <label for="Type">Type</label>
+              <label for="Type">House Type</label>
+              {{form.house_type}}
               <select class="form-control form-control-lg form-control-a" id="Type">
                 <option>All Type</option>
                 <option>For Rent</option>
@@ -25,9 +27,11 @@
               </select>
             </div>
           </div>
+
           <div class="col-md-6 mb-2">
             <div class="form-group">
-              <label for="city">City</label>
+              <label for="city">Location</label>
+              {{form.area}}
               <select class="form-control form-control-lg form-control-a" id="city">
                 <option>All City</option>
                 <option>Alabama</option>
@@ -37,6 +41,7 @@
               </select>
             </div>
           </div>
+
           <div class="col-md-6 mb-2">
             <div class="form-group">
               <label for="bedrooms">Bedrooms</label>
@@ -47,8 +52,9 @@
                 <option>03</option>
               </select>
             </div>
-          </div>
-          <div class="col-md-6 mb-2">
+          </div>-->
+
+          <!--<div class="col-md-6 mb-2">
             <div class="form-group">
               <label for="garages">Garages</label>
               <select class="form-control form-control-lg form-control-a" id="garages">
@@ -59,8 +65,9 @@
                 <option>04</option>
               </select>
             </div>
-          </div>
-          <div class="col-md-6 mb-2">
+          </div>-->
+
+          <!--<div class="col-md-6 mb-2">
             <div class="form-group">
               <label for="bathrooms">Bathrooms</label>
               <select class="form-control form-control-lg form-control-a" id="bathrooms">
@@ -70,21 +77,21 @@
                 <option>03</option>
               </select>
             </div>
-          </div>
+          </div>-->
           <div class="col-md-6 mb-2">
             <div class="form-group">
-              <label for="price">Min Price</label>
-              <select class="form-control form-control-lg form-control-a" id="price">
+              {{my_filter.form}}
+              <!--<select class="form-control form-control-lg form-control-a" id="price">
                 <option>Unlimite</option>
                 <option>$50,000</option>
                 <option>$100,000</option>
                 <option>$150,000</option>
                 <option>$200,000</option>
-              </select>
+              </select>-->
             </div>
           </div>
           <div class="col-md-12">
-            <button type="submit" class="btn btn-b">Search Property</button>
+            <button type="submit" class="btn btn-b">Make Search</button>
           </div>
         </div>
       </form>
@@ -104,7 +111,7 @@
       <a class="navbar-brand text-brand" href="/">si<span class="color-b">KA</span></a>
       {% if request.user.is_authenticated %}
       <span>
-        <p>{{request.user.name|title}}<a href="{% url 'logout' %}">Logout</a></p>
+        <p>{{request.user.name|title}}<br><a href="{% url 'logout' %}">Logout</a></p>
       </span>
       {% else %}
       <span>
