@@ -37,7 +37,7 @@
               </div>-->
                 <div class="col-md-12">
                   <input style="background-color: red;" class="btn btn-a" type="submit" value="Yes">
-                  <a class="btn btn-a" href="{% url 'profile' house.agent.username %}">No</a>
+                  <a class="btn btn-a" href="{{request.META.HTTP_REFERER}}">No</a>
                 </div>
               </div>
             </form>

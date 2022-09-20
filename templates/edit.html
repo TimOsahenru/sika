@@ -4,7 +4,7 @@
 <section style="margin-bottom: -120px;" class="intro-single">
     <div class="container">
         <div class="col-md-12">
-            <a style="margin-bottom: 40px;" class="btn btn-a" href="{% url 'profile' request.user.username %}">&#8592; back</a>
+            <a style="margin-bottom: 40px;" class="btn btn-a" href="{{request.META.HTTP_REFERER}}">&#8592; back</a>
         </div>
         <div class="row">
             <div class="col-md-12 col-lg-8">

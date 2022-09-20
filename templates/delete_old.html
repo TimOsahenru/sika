@@ -3,5 +3,5 @@
     {% csrf_token %}
     {{form.as_p}}
     <input type="submit" value="Delete">
-    <a href="{% url 'profile' house.agent.username %}">back</a>
+    <a href="{{request.META.HTTP_REFERER}}">back</a>
 </form>
