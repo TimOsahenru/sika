@@ -26,8 +26,9 @@ def house_detail(request, pk):
 def agent_profile(request, pk):
     agent = Agent.objects.get(username=pk)
     houses = agent.house_set.all()
+    count = houses.count()
 
-    context = {'agent': agent, 'houses': houses}
+    context = {'agent': agent, 'houses': houses, 'count': count}
     return render(request, 'agent-profile.html', context)
 
 
