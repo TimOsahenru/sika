@@ -1,8 +1,58 @@
-<h4>Login</h4>
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    <input type="email" name="email" placeholder="Email...">
-    <input type="password" name="password" placeholder="Password...">
-    <input type="submit" value="Login">
-</form>
-<p>Do not have an account ? <a href="{% url 'signup' %}">SignUp Here</a></p>
+{% extends 'base.html' %}
+{% block content %}
+<!--/ Intro Single star /-->
+<section style="margin-bottom: -120px;" class="intro-single">
+  <div class="container">
+    <div class="col-md-12">
+      <a style="margin-bottom: 40px;" class="btn btn-a" href="/">&#8592; back</a>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-lg-8">
+        <div class="title-single-box">
+          <h1 class="title-single">Login</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/ Intro Single End /-->
+
+<!--/ Contact Star /-->
+<section class="contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 section-t8">
+        <div class="row">
+          <div class="col-md-7">
+          <form action="" method="POST">
+            {% csrf_token %}
+            {% for message in messages %}
+            <p style="color: red;">{{message}}</p>
+            {% endfor %}
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <div class="form-group">
+                  <input type="email" name="email" class="form-control form-control-lg form-control-a" placeholder="Email..." data-rule="email" data-msg="Please enter a valid email">
+                  <div class="validation"></div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="form-group">
+                  <input name="password" type="password" class="form-control form-control-lg form-control-a" placeholder="Password...">
+                  <div class="validation"></div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <input class="btn btn-a" type="submit" value="Login">
+                <h3 style="margin-top: 20px;">Do not have an account ? <a href="{% url 'signup' %}">SignUp Here</a></h3>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+<!--/ Contact End /-->
+{% endblock %}

@@ -3,6 +3,7 @@ from .models import House, Agent
 from .forms import HouseForm, HouseCreate, ProfileForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 # ..................... All Houses .......................
@@ -31,6 +32,7 @@ def agent_profile(request, pk):
 
 
 # ..................... Update House .......................
+@login_required(login_url='login')
 def house_update(request, pk):
     house = House.objects.get(id=pk)
     form = HouseForm(instance=house)
@@ -47,6 +49,7 @@ def house_update(request, pk):
 
 
 # ..................... Delete House .......................
+@login_required(login_url='login')
 def house_delete(request, pk):
     house = House.objects.get(id=pk)
     agent = request.user
@@ -60,6 +63,7 @@ def house_delete(request, pk):
 
 
 # ..................... Create House .......................
+@login_required(login_url='login')
 def house_create(request):
     form = HouseCreate()
     agent = request.user
@@ -78,6 +82,9 @@ def house_create(request):
 
 # ..................... Login User .......................
 def login_user(request):
+
+    if request.user.is_authenticated:
+        return redirect('houses')
 
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -101,6 +108,7 @@ def logout_user(request):
 
 
 # ..................... Agent profile update .......................
+@login_required(login_url='login')
 def profile_update(request):
     agent = request.user
     form = ProfileForm(instance=agent)
@@ -116,6 +124,9 @@ def profile_update(request):
 
 # ..................... Agent signup .......................
 def sign_up(request):
+    if request.user.is_authenticated:
+        return redirect('houses')
+
     if request.method == 'POST':
         username = request.POST.get('username').lower()
         email = request.POST.get('email')

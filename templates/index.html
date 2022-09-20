@@ -1,23 +1,75 @@
-<header>
-    {% if request.user.is_authenticated %}
-    <a href="{% url 'logout' %}">Logout</a>
-    <p>{{request.user.username|title}}</p>
-    {% else %}
-    <a href="{% url 'login' %}">Login</a>
-    {% endif %}
-</header>
-
-<div class="container">
-    {% for house in houses %}
-    <a href="{% url 'house' house.id %}">
-        <div>
-            <h3>Type: {{house.type_of_house}}</h3>
-            <img src="{{house.image_one.url}}" width="200" height="200">
-            <p>Rent: {{house.rent_price}}</p>
-            <p>Rooms: {{house.no_of_rooms}}</p>
-            <p>Location: {{house.location}}</p>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!--/ Image slider /-->
+<div class="intro intro-carousel">
+  <div id="carousel" class="owl-carousel owl-theme">
+    <div class="carousel-item-a intro-item bg-image" style="background-image: url({% static 'img/slide-1.jpg' %})">
+      <div class="overlay overlay-a"></div>
+      <div class="intro-content display-table">
+        <div class="table-cell">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8">
+                <div class="intro-body">
+                  <h1 class="intro-title mb-4">
+                    <span class="color-b">East</span> Legon
+                    <br> Hills</h1>
+                  <p class="intro-subtitle intro-price">
+                    <span class="price-a">rent | $ 12000</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-    </a>
-    <hr>
-    {% endfor %}
+      </div>
+    </div>
+    <div class="carousel-item-a intro-item bg-image" style="background-image: url({% static 'img/slide-2.jpg' %})">
+      <div class="overlay overlay-a"></div>
+      <div class="intro-content display-table">
+        <div class="table-cell">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8">
+                <div class="intro-body">
+                  <h1 class="intro-title mb-4">
+                    <span class="color-b">Airport</span> Residential
+                    <br> Area</h1>
+                  <p class="intro-subtitle intro-price">
+                    <a href="#"><span class="price-a">rent | $ 20000</span></a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item-a intro-item bg-image" style="background-image: url({% static 'img/slide-3.jpg' %})">
+      <div class="overlay overlay-a"></div>
+      <div class="intro-content display-table">
+        <div class="table-cell">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8">
+                <div class="intro-body">
+                  <h1 class="intro-title mb-4">Adabraka</h1>
+                  <p class="intro-subtitle intro-price">
+                    <a href="#"><span class="price-a">rent | $ 40000</span></a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+<!--/ Image slider end /-->
+
+{% include 'property-grid.html' %}
+
+
+{% endblock %}

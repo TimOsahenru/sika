@@ -30,6 +30,8 @@ class Location(models.Model):
 class House(models.Model):
     agent = models.ForeignKey(Agent, on_delete=models.CASCADE)
     no_of_rooms = models.IntegerField()
+    # no_of_bathrooms = models.IntegerField()
+    # garage = models.BooleanField()
     image_one = models.ImageField(null=True, blank=True)
     image_two = models.ImageField(null=True, blank=True)
     image_three = models.ImageField(null=True, blank=True)

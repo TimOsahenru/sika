@@ -1,0 +1,34 @@
+<!-- Agent profile -->
+<div class="container">
+    <h4>Name: {{agent.username|title}}</h4>
+    <img src="{{agent.avatar.url}}" width="200" height="200">
+    <p>Email: {{agent.email}}</p>
+    <p>Phone Nos: {{agent.phone_no}}</p>
+    <p>About Me: {{agent.about_me}}</p>
+</div>
+{% if request.user == agent %}
+<a href="{% url 'profile-update' %}">Update profile</a>
+{% endif %}
+<hr>
+
+{% if request.user.is_authenticated %}
+<a href="{% url 'create' %}">Create house object</a>
+{% endif %}
+<div class="container">
+    <h3>Houses managed by {{agent.username|title}}</h3>
+    {% for house in houses %}
+    <a href="{% url 'house' house.id %}">
+        <div>
+            <h3>Type: {{house.type_of_house}}</h3>
+            <img src="{{house.image_one.url}}" width="200" height="200">
+            <p>Rent: {{house.rent_price}}</p>
+            <p>Rooms: {{house.no_of_rooms}}</p>
+            <p>Location: {{house.location}}</p>
+        </div>
+        {% if request.user == agent %}
+        <a href="{% url 'edit' house.id %}">Update</a> <a href="{% url 'delete' house.id %}">Delete</a>
+        {% endif %}
+    </a>
+    <hr>
+    {% endfor %}
+</div>

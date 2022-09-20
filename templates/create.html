@@ -1,6 +1,98 @@
-<a href="{% url 'profile' request.user.username %}">back</a>
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="Submit">
-</form>
+{% extends 'base.html' %}
+{% block content %}
+<!--/ Intro Single star /-->
+<section style="margin-bottom: -120px;" class="intro-single">
+    <div class="container">
+        <div class="col-md-12">
+            <a style="margin-bottom: 40px;" class="btn btn-a" href="{% url 'profile' request.user.username %}">&#8592; back</a>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-lg-8">
+                <div class="title-single-box">
+                    <h1 class="title-single">Create</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ Intro Single End /-->
+
+<!--/ Contact Star /-->
+<section class="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 section-t8">
+                <div class="row">
+                    <div class="col-md-7">
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        {{form.type_of_house.label}}
+                                        {{form.type_of_house}}
+                                        <div class="validation"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        {{form.location.label}}
+                                        {{form.location}}
+                                        <div class="validation"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        {{form.rent_price.label}}
+                                        {{form.rent_price}}
+                                        <div class="validation"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        {{form.no_of_rooms.label}}
+                                        {{form.no_of_rooms}}
+                                        <div class="validation"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        {{form.image_one.label}}
+                                        {{form.image_one}}
+                                        <div class="validation"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        {{form.image_two.label}}
+                                        {{form.image_two}}
+                                        <div class="validation"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        {{form.image_three.label}}
+                                        {{form.image_three}}
+                                        <div class="validation"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-9 mb-3">
+                                    <div class="form-group">
+                                        {{form.description.label}}
+                                        {{form.description}}
+                                        <div class="validation"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <input class="btn btn-a" type="submit" value="Submit">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ Contact End /-->
+{% endblock %}

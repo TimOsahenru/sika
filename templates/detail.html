@@ -1,20 +1,140 @@
-<div class="container">
-    <h3>Type: {{house.type_of_house}}</h3>
-    <img src="{{house.image_one.url}}" width="200" height="200">
-    <img src="{{house.image_two.url}}" width="200" height="200">
-    <img src="{{house.image_three.url}}" width="200" height="200">
-    <p>Rent: {{house.rent_price}}</p>
-    <p>Rooms: {{house.no_of_rooms}}</p>
-    <p>Location: {{house.location}}</p>
-    <p>Description: {{house.description}}</p>
-</div>
-<hr>
+{% extends 'base.html' %}
+{% block content %}
+<!--/ Intro Single star /-->
+<section class="intro-single">
+  <div class="container">
+    <div class="col-md-12">
+      <a style="margin-bottom: 40px;" href="/" type="submit" class="btn btn-b">&#8592; back</a>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-lg-8">
+        <div class="title-single-box">
+          <h1 class="title-single">{{house.type_of_house|title}}</h1>
+          <h4 class="color-text-a">@ {{house.location|title}}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/ Intro Single End /-->
 
-<!-- Agent profile -->
-<div class="container">
-    <h4>Name: {{house.agent.username|title}}</h4>
-    <img src="{{house.agent.avatar.url}}" width="200" height="200">
-    <p>Email: {{house.agent.email}}</p>
-    <p>Phone Nos: {{house.agent.phone_no}}</p>
-</div>
-<a href="{% url 'profile' house.agent.username %}">View {{house.agent.username|title}}'s profile</a>
+<!--/ Property Single Star /-->
+<section class="property-single nav-arrow-b">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div id="property-single-carousel" class="owl-carousel owl-arrow gallery-property">
+          <div class="carousel-item-b">
+            <img src="{{house.image_three.url}}" alt="" width="1920" height="960">
+          </div>
+          <div class="carousel-item-b">
+            <img src="{{house.image_two.url}}" alt="" width="1920" height="960">
+          </div>
+          <div class="carousel-item-b">
+            <img src="{{house.image_one.url}}" alt="" width="1920" height="960">
+          </div>
+        </div>
+        <div class="row justify-content-between">
+          <div class="col-md-5 col-lg-4">
+            <div class="property-price d-flex justify-content-center foo">
+              <div class="card-header-c d-flex">
+                <div class="card-box-ico">
+                  <span class="ion-money">$</span>
+                </div>
+                <div class="card-title-c align-self-center">
+                  <h5 class="title-c">{{house.rent_price}}</h5>
+                </div>
+              </div>
+            </div>
+            <div class="property-summary">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="title-box-d section-t4">
+                    <h3 class="title-d">Quick Summary</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="summary-list">
+                <ul class="list">
+                  <li class="d-flex justify-content-between">
+                    <strong>Location:</strong>
+                    <span>{{house.location|title}}</span>
+                  </li>
+                  <li class="d-flex justify-content-between">
+                    <strong>Property Type:</strong>
+                    <span>{{house.type_of_house}}</span>
+                  </li>
+                  <li class="d-flex justify-content-between">
+                    <strong>Beds:</strong>
+                    <span>{{house.no_of_rooms}}</span>
+                  </li>
+                  <li class="d-flex justify-content-between">
+                    <strong>Baths:</strong>
+                    <span>2</span>
+                  </li>
+                  <li class="d-flex justify-content-between">
+                    <strong>Garage:</strong>
+                    <span>1</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-7 col-lg-7 section-md-t3">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="title-box-d">
+                  <h3 class="title-d">Property Description</h3>
+                </div>
+              </div>
+            </div>
+            <div class="property-description">
+              <p class="description color-text-a">
+                {{house.description}}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--/ Agent info begin /-->
+      <div class="col-md-12">
+        <div class="row section-t3">
+          <div class="col-sm-12">
+            <div class="title-box-d">
+              <h3 class="title-d">Contact Agent</h3>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-lg-4">
+            <img src="{{house.agent.avatar.url}}" alt="" class="img-fluid" width="800" height="896">
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="property-agent">
+              <h4 class="title-agent">{{house.agent.username|title}}</h4>
+              <p class="color-text-a">
+                {{house.agent.about_me|truncatewords:10}}
+              </p>
+              <ul class="list-unstyled">
+                <li class="d-flex justify-content-between">
+                  <strong>Phone:</strong>
+                  <span class="color-text-a">{{house.agent.phone_no}}</span>
+                </li>
+                <li class="d-flex justify-content-between">
+                  <strong>Email:</strong>
+                  <span class="color-text-a">{{house.agent.email}}</span>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-12">
+              <a href="{% url 'profile' house.agent.username %}" type="submit" class="btn btn-a">View {{house.agent.username|title}}'s profile</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/ Property Single End /-->
+{% endblock %}
