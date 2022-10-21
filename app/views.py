@@ -4,13 +4,35 @@ from .forms import HouseForm, HouseCreate, ProfileForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from .filters import HouseFilter
+from django.db.models import Q
+from django.core.paginator import Paginator
 
 
 # ..................... All Houses .......................
 def index(request):
-    houses = House.objects.all()
 
-    context = {'houses': houses}
+    if 'q' in request.GET:
+        q = request.GET['q']
+        house_query = Q(Q(location__name__icontains=q) | Q(type_of_house__name__icontains=q))
+        houses = House.objects.filter(house_query)
+    else:
+        houses = House.objects.all()
+        page = Paginator(houses, 3)
+        page_list = request.GET.get('page')
+        page = page.get_page(page_list)
+
+    my_filter = HouseFilter(request.GET, queryset=houses)
+    houses = my_filter.qs
+
+    # .... temporary solutions to filters-pagination error
+    page = Paginator(houses, 3)
+    page_list = request.GET.get('page')
+    page = page.get_page(page_list)
+
+    context = {'houses': houses,
+               'my_filter': my_filter,
+               'page': page}
     return render(request, 'index.html', context)
 
 
@@ -70,7 +92,7 @@ def house_create(request):
     agent = request.user
 
     if request.method == 'POST':
-        form = HouseForm(request.POST, request.FILES)
+        form = HouseForm(request.POST)
         if form.is_valid():
             house = form.save(commit=False)
             house.agent = agent

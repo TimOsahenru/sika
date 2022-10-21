@@ -44,6 +44,9 @@ INSTALLED_APPS = [
 
     # Custom apps
     'app',
+    # Third party apps
+    'crispy_forms',
+    'django_filters',
 ]
 
 AUTH_USER_MODEL = 'app.Agent'
@@ -137,6 +140,8 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
