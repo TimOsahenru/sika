@@ -7,60 +7,6 @@
   </div>
   <span class="close-box-collapse right-boxed ion-ios-close"></span>
   <div class="box-collapse-wrap form">
-    <!--<form class="form-a">
-      {% csrf_token %}
-      <div class="row">
-        <div class="col-md-12 mb-2">
-          <div class="form-group">
-            <label for="Type">Keyword</label>
-            <input type="text" class="form-control form-control-lg form-control-a" placeholder="Keyword search...">
-          </div>
-        </div>
-        <div class="col-md-6 mb-2">
-          <div class="form-group">
-            <label for="Type">House type</label>
-            <select class="form-control form-control-lg form-control-a" id="Type">
-              {% for house in houses %}
-              <option>{{house.type_of_house}}</option>
-              {% endfor %}
-            </select>
-          </div>
-        </div>
-        <div class="col-md-6 mb-2">
-          <div class="form-group">
-            <label for="city">Location</label>
-            <select class="form-control form-control-lg form-control-a" id="city">
-              {% for house in houses %}
-              <option>{{house.location}}</option>
-              {% endfor %}
-            </select>
-          </div>
-        </div>
-        <div class="col-md-6 mb-2">
-          <div class="form-group">
-            <label for="bedrooms">Bedrooms</label>
-            <select class="form-control form-control-lg form-control-a" id="bedrooms">
-              {% for house in houses %}
-              <option>{{house.no_of_rooms}}</option>
-              {% endfor %}
-            </select>
-          </div>
-        </div>
-        <div class="col-md-6 mb-2">
-          <div class="form-group">
-            <label for="price">Min Price</label>
-            <select class="form-control form-control-lg form-control-a" id="price">
-              {% for house in houses %}
-              <option>{{house.rent_price}}</option>
-              {% endfor %}
-            </select>
-          </div>
-        </div>
-        <div class="col-md-12">
-          <button type="submit" class="btn btn-b">Search Property</button>
-        </div>
-      </div>
-    </form>-->
     <form class="form-a">
      {% csrf_token %}
      <div class="row">

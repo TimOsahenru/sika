@@ -23,18 +23,7 @@
           <div class="col-md-7">
             <form action="" method="GET">
               {% csrf_token %}
-              <div class="row"><!--<div class="col-md-6 mb-3">
-                <div class="form-group">
-                  <input type="email" name="email" class="form-control form-control-lg form-control-a" placeholder="Email..." data-rule="email" data-msg="Please enter a valid email">
-                  <div class="validation"></div>
-                </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <div class="form-group">
-                  <input name="password" type="password" class="form-control form-control-lg form-control-a" placeholder="Password...">
-                  <div class="validation"></div>
-                </div>
-              </div>-->
+              <div class="row">
                 <div class="col-md-12">
                   <input style="background-color: red;" class="btn btn-a" type="submit" value="Yes">
                   <a class="btn btn-a" href="{{request.META.HTTP_REFERER}}">No</a>

@@ -45,5 +45,28 @@ class House(models.Model):
     def __str__(self):
         return self.agent.username
 
+    @property
+    def image_one_url(self):
+        try:
+            url = self.image_one_url
+        except:
+            url = ''
+        return url
+
+    def image_two_url(self):
+        try:
+            url = self.image_two_url
+        except:
+            url = ''
+        return url
+
+    def image_three_url(self):
+        try:
+            url = self.image_three_url
+        except:
+            url = ''
+        return url
+
+
     class Meta:
         ordering = ['-created_at']
