@@ -48,21 +48,21 @@ class House(models.Model):
     @property
     def image_one_url(self):
         try:
-            url = self.image_one_url
+            url = self.image_one.url
         except:
             url = ''
         return url
 
     def image_two_url(self):
         try:
-            url = self.image_two_url
+            url = self.image_two.url
         except:
             url = ''
         return url
 
     def image_three_url(self):
         try:
-            url = self.image_three_url
+            url = self.image_three.url
         except:
             url = ''
         return url
